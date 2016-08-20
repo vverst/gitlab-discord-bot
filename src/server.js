@@ -8,13 +8,14 @@ var handlers = {
 };
 
 class WebhookServer {
-  constructor(port) {
+  constructor(port, secret) {
     this.server = express();
     this.server.use(bodyParser.json());
 
     this.port = port;
+    this.secret = secret;
 
-    this.server.post('/api/v1/event', handleEvent);
+    this.server.post('/api/v1/event', (req, res) => { handleEvent(this, req, res); });
   }
 
   listen(callback) {
@@ -23,18 +24,22 @@ class WebhookServer {
 }
 
 
-function handleEvent(req, res) {
+function handleEvent(server, req, res) {
+  if (req.headers["x-gitlab-token"] != server.secret) {
+    res.sendStatus(403);
+    return;
+  }
+
   var handler = handlers[req.body.object_kind];
 
   if (handler == null) {
     res.sendStatus(503);
-
     return;
   }
 
   var result = handler.handle(req.body);
 
-  app.discord.notify(result);
+  // app.discord.notify(result);
 
   res.sendStatus(200);
 }

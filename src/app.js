@@ -1,4 +1,4 @@
-var config = require("../config.json");
+var config = require("../config.js");
 
 var server;
 var discord;
@@ -11,7 +11,7 @@ start();
 function start() {
   logger.info("Starting HTTP server...");
 
-  server = new (require("./server.js"))(config.server.port);
+  server = new (require("./server.js"))(config.server.port, config.server.secret);
   server.listen(function() {
     logger.info("HTTP server started");
   });

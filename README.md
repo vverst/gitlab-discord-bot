@@ -2,6 +2,11 @@
 
 A tiny GitLab notification bridge for Discord built using [Discord.io](https://github.com/izy521/discord.io).
 
+### Installation
+Currently, packages are not provided. You can install the bot from source by cloning the repository and running `npm install`.
+
+To start the bot, use `npm start`.
+
 ### Bot configuration
 A template configuration file can be found at `config.example.js`. Copy this to `config.js` and modify it appropriately.
 

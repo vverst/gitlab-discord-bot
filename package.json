@@ -5,6 +5,9 @@
   "main": "src/app.js",
   "author": "jellysquid3",
   "license": "GPL-3.0",
+  "scripts": {
+    "start": "node src/app.js"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "discord.io": "^2.0.1",

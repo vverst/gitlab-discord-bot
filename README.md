@@ -3,7 +3,7 @@
 A tiny GitLab notification bridge for Discord built using [Discord.io](https://github.com/izy521/discord.io).
 
 ### Bot configuration
-A template configuration file can be found at `config.json.example`. Copy this to `config.json` and modify it appropriately.
+A template configuration file can be found at `config.example.js`. Copy this to `config.js` and modify it appropriately.
 
 ### GitLab configuration
 _**Note:** The internal web server of the bot needs to be exposed to your GitLab installation, preferably behind nginx with SSL._

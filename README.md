@@ -11,3 +11,6 @@ _**Note:** The internal web server of the bot needs to be exposed to your GitLab
 Create a new webhook for your GitLab project, and set the endpoint to `http://$SERVER/api/v1/event/:channel`, where `$SERVER` is the location the internal server can be reached by, and `:channel` is the snowflake ID for the Discord channel to post the notification to.
 
 Additionally, set the secret token field to the one defined in your configuration file.
+
+### License
+Licensed under the GNU GPL v3 license.

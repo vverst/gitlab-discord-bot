@@ -18,16 +18,12 @@ function start() {
 
   logger.info("Starting Discord bot...");
 
-  discord = new (require("./discord.js"))(config.discord.channel, config.discord.token);
+  discord = new (require("./discord.js"))(config.discord.token);
   discord.bot.on('ready', function() {
     logger.info("Discord bot connected");
   });
 
   discord.connect();
-}
-
-function loadConfig() {
-  logger.info("");
 }
 
 module.exports.server = server;

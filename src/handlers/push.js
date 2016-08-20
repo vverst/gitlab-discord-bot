@@ -4,7 +4,7 @@ var format = require("string-format");
 
 class PushHandler extends Handler {
   handle(json) {
-    var header = format("_**{}** pushed {} commits to **{} ({})**_ :arrows_counterclockwise:",
+    var header = format(":arrows_counterclockwise:  _**{}** pushed {} commits to **{} ({})**_ :arrows_counterclockwise:\n\n",
       json.user_name,
       json.total_commits_count,
       json.project.name,
@@ -18,11 +18,9 @@ class PushHandler extends Handler {
         commit.message));
     }
 
-    var combined = format("{}\n\n{}",
-      header,
-      log.join("\n\n"));
+    var body = log.join("\n\n");
 
-    return combined;
+    return header + body;
   }
 }
 

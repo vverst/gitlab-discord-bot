@@ -4,7 +4,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var handlers = {
-  push: new (require('./handlers/push.js'))
+  push: new (require('./handlers/push.js')),
+  issue: new (require('./handlers/issue.js')),
+  note: new (require('./handlers/note.js'))
 };
 
 class WebhookServer {
@@ -15,7 +17,7 @@ class WebhookServer {
     this.port = port;
     this.secret = secret;
 
-    this.server.post('/api/v1/event', (req, res) => { handleEvent(this, req, res); });
+    this.server.post('/api/v1/event/:channel', (req, res) => { handleEvent(this, req, res); });
   }
 
   listen(callback) {
@@ -30,16 +32,27 @@ function handleEvent(server, req, res) {
     return;
   }
 
+  if (req.params.channel == null) {
+    res.sendStatus(400, {
+      "error": "Missing channel"
+    });
+
+    return;
+  }
+
   var handler = handlers[req.body.object_kind];
 
   if (handler == null) {
-    res.sendStatus(503);
+    res.sendStatus(200);
+
     return;
   }
 
   var result = handler.handle(req.body);
 
-  // app.discord.notify(result);
+  if (result != null) {
+    app.discord.notify(req.params.channel, result);
+  }
 
   res.sendStatus(200);
 }

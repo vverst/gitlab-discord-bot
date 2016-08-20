@@ -2,8 +2,6 @@ module.exports = {
   "discord": {
     // The secret token found in your application's settings
     "token": "[Discord bot token]",
-    // The channel this bot will emit events to
-    "channel": "[Channel snowflake ID]",
     // The user ID of the bot owner, used to restrict administrative commands to only this user
     "owner": "[User snowflake ID]"
   },

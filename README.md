@@ -8,6 +8,6 @@ A template configuration file can be found at `config.example.js`. Copy this to 
 ### GitLab configuration
 _**Note:** The internal web server of the bot needs to be exposed to your GitLab installation, preferably behind nginx with SSL._
 
-Create a new webhook for your GitLab project, and set the endpoint to `http://$SERVER/api/v1/event`, where `$SERVER` is the location the internal server can be reached by.
+Create a new webhook for your GitLab project, and set the endpoint to `http://$SERVER/api/v1/event/:channel`, where `$SERVER` is the location the internal server can be reached by, and `:channel` is the snowflake ID for the Discord channel to post the notification to.
 
 Additionally, set the secret token field to the one defined in your configuration file.

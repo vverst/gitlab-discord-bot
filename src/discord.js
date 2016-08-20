@@ -1,14 +1,13 @@
 var Discord = require('discord.io');
 
 class DiscordBot {
-  constructor(channel, token) {
+  constructor(token) {
     this.bot = new Discord.Client({
       token: token
     });
 
     this.bot.on('message', handleMessage);
 
-    this.channel = channel;
     this.token = token;
   }
 
@@ -16,9 +15,9 @@ class DiscordBot {
     this.bot.connect();
   }
 
-  notify(message) {
+  notify(channel, message) {
     this.bot.sendMessage({
-      to: this.channel,
+      to: channel,
       message: message
     })
   }

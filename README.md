@@ -14,10 +14,10 @@ If you will be installing the notification bridge to a seperate machine and wish
 A template configuration file can be found at `config.example.js`, and should be copied to `config.js` as a starting point. It's recommended you don't delete or otherwise modify the example configuration file to avoid merge conflicts when pulling new changes from the Git repository.
 
 #### Listening
-Your Discord bot will, by default, listen on `localhost:8080`. If this is unsuitable, you can change the port using the `server.port` option in your config.
+Your notification bridge will, by default, listen on `localhost:8080`. If this is unsuitable, you can change the port using the `server.port` option in your config.
 
 #### Hooks
-A Discord webhook creates an outlet for your bot to post notifications to. You'll need to have sufficient permissions to create and manage webhooks on the server you wish to configure. To begin, you'll need to create a Discord webook. If you're unfamilar with the process, please see [Discord's documentation](https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
+A Discord webhook creates an outlet for your bot to post notifications to. You'll need to have sufficient permissions to create and manage webhooks on the Discord server you wish to configure.  If you're unfamilar with the process, please see [Discord's documentation](https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
 
 Once you've created and configured your webhook in Discord's UI, you can add the webhook's URL to your configuration file in the `webhooks` section. Examples are provided in the example configuration file `config.example.js`.
 
@@ -27,9 +27,7 @@ You can name your webhook in the configuration file whatever your heart desires,
 The example configuration uses the security token `change_me`. It is **strongly recommended** you change it to something more secure, especially if your bridge will be reachable from the internet.
 
 ## GitLab Configuration
-You will need to be able to create webhooks on the GitLab repository you're wishing to bridge to Discord. When creating your webhook, you can choose which events you want to be posted to your bridge.
-
-You can also configure as many GitLab webhooks to your bridge as you want, in any arrangement across multiple projects and sites.
+You will need to be able to create webhooks on the GitLab repository you're wishing to bridge to Discord. When creating your webhook, you can choose which events you want to be posted to your bridge. For more details on creating a webhook on your GitLab repository, please see their [official documentation](https://docs.gitlab.com/ce/web_hooks/web_hooks.html).
 
 To properly set up the bridge with GitLab, you will need to set the Webhook URL to the bridge's webhook endpoint. If your bridge is accessible on `localhost:8080`, your URL will look like this:
 
@@ -53,6 +51,8 @@ https:///example.com/api/v1/webhook/delicious-cake
 
 You'll also need to provide the secret authentication token to GitLab for it to be able to send events. The token is the same as the one in your configuration file.
 
+You can configure as many GitLab webhooks to your bridge as you want, in any arrangement, across multiple repositories and servers without issue.
+
 ## Reporting Issues
 Please be sure to run pull recent changes to the repository before submitting an issue. It's possible your issue has been already been resolved.
 
@@ -61,7 +61,7 @@ If you're still running into an issue, sorry about that! When creating your issu
 ## Creating Pull Requests
 Thanks for helping by contribute to this little project! I welcome all pull requests with open arms (including ones that poke at any mistakes I make), but I ask that you provide a brief overview of what your changes do when submitting a PR.
 
-Additionally, please make sure your pull requests conform to the provided [ESLint] configuration. You can do so by running `npm run-script lint`.
+Additionally, please make sure your pull requests conform to the provided ESLint configuration. You can do so by running `npm run-script lint`.
 
 ## License
 Licensed under GNU GPL v3.0. Please see the LICENSE file or the [HTML version](https://www.gnu.org/licenses/gpl-3.0.html) for more details.

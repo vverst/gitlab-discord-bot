@@ -27,7 +27,7 @@ class Formatter {
 
 				embed.fields.push({
 					name: util.format('`%s` %s', shorthand, commit.message),
-					value: commit.author.name,
+					value: '- ' + commit.author.name,
 					inline: false
 				});
 			}

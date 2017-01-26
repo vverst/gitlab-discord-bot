@@ -1,30 +1,18 @@
-var config = require("../config.js");
+const winston = require('winston');
+winston.info('Starting bridge');
 
-var server;
-var discord;
+const express = require('express');
+const bodyParser = require('body-parser');
 
-var logger = require("winston");
-logger.add(logger.transports.File, { filename: 'logs/latest.log' });
+const config = require('../config');
+exports.config = config;
 
-start();
+const router = require('./router');
 
-function start() {
-  logger.info("Starting HTTP server...");
+var app = express();
+app.use(bodyParser.json());
+app.use('/api/v1', router);
 
-  server = new (require("./server.js"))(config.server.port, config.server.secret);
-  server.listen(function() {
-    logger.info("HTTP server started");
-  });
-
-  logger.info("Starting Discord bot...");
-
-  discord = new (require("./discord.js"))(config.discord.token);
-  discord.bot.on('ready', function() {
-    logger.info("Discord bot connected");
-  });
-
-  discord.connect();
-}
-
-module.exports.server = server;
-module.exports.discord = discord;
+app.listen(config.server.port, function() {
+	winston.info('Listening on localhost:8080');
+});

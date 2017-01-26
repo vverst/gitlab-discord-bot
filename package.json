@@ -1,18 +1,25 @@
 {
   "name": "gitlab-discord-bot",
-  "version": "1.0.0",
-  "description": "A tiny GitLab notification bridge for Discord.",
+  "version": "1.1.0",
+  "repository": "https://github.com/jellysquid3/gitlab-discord-bot",
+  "description": "A tiny GitLab bridge taking advantage of Discord Webhooks, written in Node.",
   "main": "src/app.js",
-  "author": "jellysquid3",
-  "license": "GPL-3.0",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "lint": "./node_modules/.bin/eslint **.js"
   },
+  "author": "JellySquid",
+  "license": "GPL-3.0",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "discord.io": "^2.0.1",
     "express": "^4.14.0",
-    "string-format": "^0.5.0",
-    "winston": "^2.2.0"
+    "unirest": "^0.5.1",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.14.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1"
   }
 }

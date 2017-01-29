@@ -1,31 +1,43 @@
 const util = require('util');
 
 const styles = require('../styles');
+const truncate = require('../truncate');
 
 class Event {
 	format(body) {
 		return new Promise(function(resolve) {
 			var embed = {};
+			var attributes = body.object_attributes;
+			var action = attributes.action;
 
-			if (body.object_attributes.action == 'open') {
-				embed.title = util.format('Opened issue `#%d`', body.object_attributes.id);
-				embed.color = styles.colors.issue.opened;
-			} else if (body.object_attributes.action == 'close') {
-				embed.title = util.format('Closed issue `#%d`', body.object_attributes.id);
-				embed.color = styles.colors.issue.closed;
+			var verb = '???';
+			var short = true;
+
+			if (action == 'open') {
+				verb = 'Opened';
+				short = false;
+			} else if (action == 'close') {
+				verb = 'Closed';
+			} else if (action == 'update') {
+				verb = 'Updated';
 			}
 
-			embed.url = body.object_attributes.url;
+			embed.title = util.format('%s issue `#%d`', verb, attributes.id);
+
+			embed.color = styles.colors.issue[action];
+			embed.url = attributes.url;
 
 			embed.author = {
 				name: body.user.name,
 				icon_url: body.user.avatar_url
 			};
 
+			var desc = truncate(attributes.description, short ? 120 : 240);
+
 			embed.fields = [
 				{
-					name: body.object_attributes.title,
-					value: body.object_attributes.description,
+					name: attributes.title,
+					value: desc,
 					inline: false
 				}
 			];

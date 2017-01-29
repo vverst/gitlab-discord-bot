@@ -24,10 +24,16 @@ class Formatter {
 
 			for (var commit of body.commits) {
 				var shorthand = commit.id.substring(0, 8);
+				var message = commit.message.split('\n');
+				var description = util.format('- **%s**', commit.author.name);
+
+				if (message.length > 1) {
+					description = message.slice(1, message.length).join('\n') + '\n' + description;
+				}
 
 				embed.fields.push({
-					name: util.format('`%s` %s', shorthand, commit.message),
-					value: '- ' + commit.author.name,
+					name: util.format('`%s` %s', shorthand, message[0]),
+					value: description,
 					inline: false
 				});
 			}

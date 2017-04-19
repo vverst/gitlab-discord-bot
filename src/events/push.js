@@ -1,7 +1,7 @@
 const util = require('util');
 
 const git = require('../git');
-const styles = require('../styles');
+const discord = require('../discord');
 
 class Formatter {
 	format(body) {
@@ -14,11 +14,8 @@ class Formatter {
 			embed.description = util.format('to branch **%s** of **%s**', git.getBranchName(body.ref), body.project.name);
 			embed.url = git.getCommitDiffURL(body.project.web_url, body.before, body.after);
 
-			embed.color = styles.colors.push;
-			embed.author = {
-				name: body.user_name,
-				icon_url: body.user_avatar
-			};
+			embed.color = 0x00bcd4;
+			embed.author = discord.create_author_obj(body.user.name, body.user.avatar_url);
 
 			embed.fields = [];
 

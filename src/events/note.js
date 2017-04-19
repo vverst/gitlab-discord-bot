@@ -1,7 +1,6 @@
 const util = require('util');
-
-const styles = require('../styles');
 const truncate = require('../truncate');
+const discord = require('../discord');
 
 class Event {
 	format(body) {
@@ -22,15 +21,12 @@ class Event {
 			}
 
 			embed.title = 'Commented on ' + where;
-			embed.color = styles.colors.note;
+			embed.color = 0x3f51b5;
 			embed.url = body.object_attributes.url;
 
 			embed.description = truncate(body.object_attributes.note, 240);
 
-			embed.author = {
-				name: body.user.name,
-				icon_url: body.user.avatar_url
-			};
+			embed.author = discord.create_author_obj(body.user.name, body.user.avatar_url);
 
 			resolve({ embeds: [ embed ] });
 		});

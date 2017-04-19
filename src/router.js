@@ -8,8 +8,6 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/webhook/:name', function (req, res) {
-	var start = new Date().getTime();
-
 	var token = req.headers['x-gitlab-token'];
 
 	if (token != app.config.authentication.secret) {
@@ -45,12 +43,9 @@ router.post('/webhook/:name', function (req, res) {
 
 	// Create message send post webhook
 	handler.createMessage(req.body).then(function(message) {
-		return executor.execute(message, webhook);
-	}).then(function() {
 		res.status(202).send();
 
-		var ms = new Date().getTime() - start;
-		winston.info('Delivered event sucessfully to webhook', name, 'in ' + ms + 'ms');
+		executor.execute(message, webhook);
 	}).catch(function(err) {
 		winston.error('Unexpected error processing event', err);
 

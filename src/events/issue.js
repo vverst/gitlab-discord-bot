@@ -41,26 +41,6 @@ class Event {
 				inline: false
 			} ];
 
-			if (action.show_details) {
-				if (body.assignee) {
-					embed.fields.push({
-						name: 'Assignee', value: body.assignee.name, inline: true
-					});
-				}
-
-				if (body.labels && body.labels.length > 0) {
-					var labels = [];
-
-					for (var label of body.labels) {
-						labels.push(label.title);
-					}
-
-					embed.fields.push({
-						name: 'Labels', value: labels.join(', '), inline: true
-					});
-				}
-			}
-
 			resolve({ embeds: [ embed ] });
 		});
 	}

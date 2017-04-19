@@ -15,7 +15,7 @@ class Formatter {
 			embed.url = git.getCommitDiffURL(body.project.web_url, body.before, body.after);
 
 			embed.color = 0x00bcd4;
-			embed.author = discord.create_author_obj(body.user.name, body.user.avatar_url);
+			embed.author = discord.create_author_obj(body.user_name, body.icon_url);
 
 			embed.fields = [];
 

@@ -13,9 +13,9 @@ class Event {
 			if (type == 'Commit') {
 				where = util.format('commit `%s`', body.commit.substring(0, 8));
 			} else if (type == 'Issue') {
-				where = util.format('issue `#%s`', body.issue.id);
+				where = util.format('issue `#%s`', body.issue.iid);
 			} else if (type == 'MergeRequest') {
-				where = util.format('merge request `!%s`', body.merge_request.id);
+				where = util.format('merge request `!%s`', body.merge_request.iid);
 			} else if (type == 'Snippet') {
 				where = util.format('snippet `$%s`', body.snippet.id);
 			}

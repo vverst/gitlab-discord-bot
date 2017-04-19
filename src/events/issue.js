@@ -29,7 +29,7 @@ class Event {
 			var attributes = body.object_attributes;
 			var action = ACTIONS[attributes.action];
 
-			embed.title = util.format('%s issue `#%d`', action.verb, attributes.id);
+			embed.title = util.format('%s issue `#%d`', action.verb, attributes.iid);
 			embed.url = attributes.url;
 			embed.color = action.color;
 

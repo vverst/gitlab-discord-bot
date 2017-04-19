@@ -48,7 +48,7 @@ class Event {
 					});
 				}
 
-				if (body.labels.length > 0) {
+				if (body.labels && body.labels.length > 0) {
 					var labels = [];
 
 					for (var label of body.labels) {

@@ -14,5 +14,5 @@ app.use(bodyParser.json());
 app.use('/api/v1', router);
 
 app.listen(config.server.port, function() {
-	winston.info('Listening on localhost:8080');
+	winston.info('Listening on localhost:' + config.server.port);
 });

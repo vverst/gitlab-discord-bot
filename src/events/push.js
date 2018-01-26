@@ -2,6 +2,7 @@ const util = require('util');
 
 const git = require('../git');
 const discord = require('../discord');
+const validUrl = require('valid-url');
 
 class Formatter {
 	format(body) {
@@ -15,7 +16,14 @@ class Formatter {
 			embed.url = git.getCommitDiffURL(body.project.web_url, body.before, body.after);
 
 			embed.color = 0x00bcd4;
-			embed.author = discord.create_author_obj(body.user_name, body.user_avatar);
+
+			let avatar_url = body.user_avatar;
+			//Check to see if this is a GitLab avatar
+			if(!validUrl.isWebUri(avatar_url)) {
+				avatar_url = `https://gitlab.com${avatar_url}`;
+			}
+
+			embed.author = discord.create_author_obj(body.user_name, avatar_url);
 
 			embed.fields = [];
 

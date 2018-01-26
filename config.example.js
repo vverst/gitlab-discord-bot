@@ -1,11 +1,11 @@
 module.exports = {
 	server: {
-		port: 8080
+		port: process.env.PORT || 8080
 	},
 	webhooks: {
-		'my-super-awesome-hook': 'https://canary.discordapp.com/api/webhooks/123456789123456789/aaaBBB'
+		[process.env.WEBHOOK_NAME || "my-super-awesome-hook"]: process.env.WEBHOOK_URL || "https://canary.discordapp.com/api/webhooks/123456789123456789/aaaBBB"
 	},
 	authentication: {
-		secret: 'change_me'
+		secret: process.env.WEBHOOK_SECRET || "change_me"
 	}
 };

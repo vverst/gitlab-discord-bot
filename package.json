@@ -5,7 +5,7 @@
   "description": "A tiny GitLab bridge taking advantage of Discord Webhooks, written in Node.",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "nodejs src/app.js",
     "lint": "./node_modules/.bin/eslint **.js"
   },
   "author": "JellySquid",

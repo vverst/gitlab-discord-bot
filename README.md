@@ -53,6 +53,24 @@ You'll also need to provide the secret authentication token to GitLab for it to 
 
 You can configure as many GitLab webhooks to your bridge as you want, in any arrangement, across multiple repositories and servers without issue.
 
+## Docker
+You can also use build the Docker container to run this app
+
+Build the image from the Dockerfile
+```
+docker build -t gitlab-discord-bridge .
+```
+
+Run a container
+```
+docker run -d \
+--restart unless-stopped \
+--name gitlab-discord-bridge \
+-v /localmachine/pathtoconfig/config.js:/usr/app/config.js \
+gitlab-discord-bridge
+```
+
+
 ## Reporting Issues
 Please be sure to run pull recent changes to the repository before submitting an issue. It's possible your issue has been already been resolved.
 
